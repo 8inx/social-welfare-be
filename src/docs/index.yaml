@@ -1,0 +1,30 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+
+paths:
+  # [Auth]
+  /auth/login:
+    post:
+      $ref: './paths/auth.yaml#/Login'
+  /auth/register:
+    post:
+      $ref: './paths/auth.yaml#/Register'
+
+  # [Users]
+  /users:
+    get:
+      $ref: './paths/user.yaml#/FindAllUsers'
+
+  /users/{id}:
+    put:
+      $ref: './paths/user.yaml#/UpdateUser'
+    delete:
+      $ref: './paths/user.yaml#/DeleteUser'
+    get:
+      $ref: './paths/user.yaml#/FindUserById'
+      
+    
+definitions:
+  User:
+    $ref: './definitions/User.yaml'

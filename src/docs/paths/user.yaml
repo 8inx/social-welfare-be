@@ -1,0 +1,157 @@
+
+# [UpdateUser]
+UpdateUser:
+  tags:
+    - Users
+  summary: Update User
+  description: Update user info
+  parameters:
+  - in: path
+    name: id
+    type: string 
+    description: User `id` thats needs to be updated
+    required: true
+  requestBody:
+    description: Update request body
+    content:
+      application/json:
+        schema:
+          $ref: '../definitions/User.yaml'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '../definitions/User.yaml'
+              message:
+                type: string
+                default: Updated successfully
+    '400':
+      description: 'Bad Request'
+    '401':
+      description: 'Unauthorized'
+    '403':
+      description: 'Forbidden'
+    '409':
+      description: 'Conflict'
+    '500':
+      description: 'Server Error'
+
+# [DeleteUser]
+DeleteUser:
+  tags:
+    - Users
+  summary: Delete User
+  description: Delete a user with the id specified in parameter
+  parameters:
+    - in: path
+      name: id
+      type: string 
+      description: User `id` thats needs to be deleted
+      required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '../definitions/User.yaml'
+              message:
+                type: string
+                default: Deleted successfully
+    '400':
+      description: 'Bad Request'
+    '401':
+      description: 'Unauthorized'
+    '403':
+      description: 'Forbidden'
+    '500':
+      description: 'Server Error'
+
+# [FindUserById]
+FindUserById:
+  tags:
+    - Users
+  summary: Find User by Id
+  description: Find a user with the id specified in parameter
+  parameters:
+    - in: path
+      name: id
+      type: string 
+      description: User `id` thats needs to be found
+      required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '../definitions/User.yaml'
+              message:
+                type: string
+                default: find user
+    '400':
+      description: 'Bad Request'
+    '500':
+      description: 'Server Error'
+
+# [FindAllUsers]
+FindAllUsers:
+  tags:
+    - Users
+  summary: Find All Users
+  description: Find all users
+  parameters:
+  - in: query
+    name: role
+    description: filter by role
+    schema:
+      type: string
+      enum: ['user','admin']
+  - in: query
+    name: latest
+    description: get latest
+    schema:
+      type: number
+      enum: [0,1]
+      default: 0
+  - in: query
+    name: page
+    type: number
+    description: current page
+    default: 1
+  - in: query
+    name: size
+    type: number
+    description: max users per page
+    default: 30
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '../definitions/User.yaml'
+              message:
+                type: string
+                default: Find all users success
+    '400':
+      description: 'Bad Request'
+    '500':
+      description: 'Server Error'
+

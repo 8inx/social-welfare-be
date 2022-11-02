@@ -1,0 +1,105 @@
+
+# [Login]
+Login:
+  tags:
+    - Auth
+  summary: Login
+  description: Login user
+  requestBody:
+    description: Login body
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            email:
+              type: string
+              example: example@email.com
+            password:
+              type: string
+              example: password
+          required:
+            - email
+            - password
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  user:
+                    $ref: '../definitions/User.yaml'
+                  token:
+                    type: string
+                    example: tokenHere
+              message:
+                type: string
+                example: Login successfully
+    '400':
+      description: 'Bad Request'
+    '409':
+      description: 'Conflict'
+    '500':
+      description: 'Server Error'
+
+
+# [Register]
+Register:
+  tags:
+    - Auth
+  summary: Register
+  description: Register user
+  requestBody:
+    description: Register body
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            firstName:
+              type: string
+              example: John
+            lastName:
+              type: string
+              example: Doe
+            email:
+              type: string
+              example: example@email.com
+            password:
+              type: string
+              example: password
+          required:
+            - firstName
+            - lastName
+            - email
+            - password
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  user:
+                    $ref: '../definitions/User.yaml'
+                  token:
+                    type: string
+                    example: tokenHere
+              message:
+                type: string
+                example: Register successfully
+    '400':
+      description: 'Bad Request'
+    '409':
+      description: 'Conflict'
+    '500':
+      description: 'Server Error'

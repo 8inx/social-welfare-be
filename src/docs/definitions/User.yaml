@@ -1,0 +1,23 @@
+type: object
+properties:
+  _id: 
+    type: string
+    example: 5ebac534954b54139806c112
+    readOnly: true
+  email:
+    type: string
+    example: example@email.com
+  password:
+    type: string
+    example: password
+    writeOnly: true            
+  firstName:
+    type: string
+    example: John
+  lastName:
+    type: string
+    example: Doe
+  role:
+    type: string
+    enum: ['user', 'admin']
+    example: user

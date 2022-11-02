@@ -1,0 +1,6 @@
+{
+    "ignore": ["swagger.yaml"],
+    "events": {
+        "start": "npm run doc:clean && npm run doc:generate"
+    }
+}

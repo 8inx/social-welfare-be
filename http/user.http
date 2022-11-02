@@ -1,0 +1,47 @@
+### Login and get token
+# @name login
+POST http://localhost:{{$dotenv PORT}}/auth/login
+Content-Type: application/json
+
+{
+    "email": "example@email.com",
+    "password": "password"
+}
+
+### 
+@baseURL = http://localhost:{{$dotenv PORT}}
+@token = {{login.response.body.data.token}}
+
+
+### Update User
+@id = 636268d59868a1cccd0cc827
+PUT {{ baseURL }}/users/{{id}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "email": "example@email.com",
+    "password": "password",
+    "firstName": "John",
+    "lastName": "Doe"
+}
+
+### Update User
+@id = 636268d59868a1cccd0cc827
+DELETE {{ baseURL }}/users/{{id}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+
+### Find a User
+@id = 636268d59868a1cccd0cc827
+GET {{ baseURL }}/users/{{id}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+
+### GET All User
+GET {{ baseURL }}/users
+#?latest=1&role=admin&page=1&size=30
+Content-Type: application/json
+Authorization: Bearer {{token}}
